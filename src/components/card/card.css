@@ -1,0 +1,27 @@
+.card {
+    border: #DEE3E4 1px solid;
+    border-radius: 7px;
+    background-color: #ffffff;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    font-weight: 700;
+}
+.card__text {
+    margin-right: 20px;
+    align-self: center;
+}
+.card__title {
+    margin-bottom: 15px;
+    font-size: 18px;
+    width: 150px;
+}
+.card__amount{
+    margin-bottom: 15px;
+    font-size: 24px;
+}
+.card__img{
+    align-self: center;
+    width: 55px;
+    padding: 15px 5px;
+}

@@ -1,0 +1,16 @@
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+.wallet__wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+.wallet__cards {
+    display: flex;
+    justify-content: space-between;
+}
+.wallet__right {
+    width: 600px;
+}

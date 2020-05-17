@@ -1,0 +1,74 @@
+.wallet-table {
+    background-color: #ffffff;
+    border-radius: 6px;
+    border: 1px solid #DEE3E4;
+    max-width: calc(50vw);
+}
+.wallet-table__title {
+    padding: 10px 10px;
+    font-weight: 700;
+    font-size: 24px;
+}
+.wallet-table__content, .wallet-table__headers-row {
+    border-top: 1px solid #DEE3E4;
+    border-bottom: 1px solid #DEE3E4;
+    border-collapse: collapse;
+    width: 100%;
+}
+.wallet-table__headers-row th, .wallet-table__row td {
+    padding: 10px 8px;
+}
+.wallet-table__headers-row th span {
+    padding-left: 5px;
+}
+.wallet-table__headers-row th input {
+    width: 150px;
+    height: 25px;
+    border: none;
+    border-bottom: #979797 solid 3px;
+    font-size: 16px;
+}
+
+.wallet-table__headers-row th input:focus {
+    border-bottom: #FF4A00 solid 3px;
+    outline: none;
+}
+
+.wallet-table__headers-row th input::placeholder {
+    color: #979797;
+    font-size: 16px;
+}
+.wallet-table__headers-row th button {
+    width: 48px;
+    height: 29px;
+    background-color: #FF4A00;
+    font-weight: 700;
+    color: #ffffff;
+    border: none;
+    margin-left: 3px;
+    font-size: 27px;
+    border-radius: 2px;
+    cursor: pointer;
+    outline: none;
+}
+.wallet-table__headers-row th button:hover {
+    box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.25);
+}
+.wallet-table__row:nth-child(odd) {
+    background-color: rgba(221, 226, 227, 0.4);
+}
+.wallet-table__row {
+    border-top: 1px solid #DEE3E4;
+    border-bottom: 1px solid #DEE3E4;
+}
+.wallet-table__row:hover {
+    background-color: rgba(255, 74, 0, 0.2);
+}
+.delete {
+    font-size: 20px;
+    line-height: 0;
+    padding-left: 45px;
+    cursor: pointer;
+    color: #FF4A00;
+    font-weight: 900;
+}

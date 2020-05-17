@@ -1,0 +1,17 @@
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+.money-box__row{
+    display: flex;
+    justify-content: space-between;
+}
+.money-box__col {
+    width: 100%;
+    margin: 0 10px;
+}
+.money-box__cards {
+    display: flex;
+    justify-content: space-between;
+}

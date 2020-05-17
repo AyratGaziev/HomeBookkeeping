@@ -1,0 +1,13 @@
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+.home__row{
+    display: flex;
+    justify-content: space-around;
+}
+.home__col {
+    width: 100%;
+    margin: 0 10px;
+}

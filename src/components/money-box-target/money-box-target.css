@@ -1,0 +1,115 @@
+.money-box-target{
+    background-color: #ffffff;
+    border-radius: 6px;
+    border: 1px solid #DEE3E4;
+    max-width: calc(50vw - 30px);
+    padding: 15px;
+    margin-bottom: 15px;
+}
+.money-box-target__title {
+    padding: 10px 0;
+    font-weight: 700;
+    font-size: 24px;
+}
+.money-box-target__wrapp {
+    margin-bottom: 25px;
+}
+.money-box-target__wrapp input {
+    width: 150px;
+    height: 25px;
+    border: none;
+    border-bottom: #979797 solid 3px;
+    font-weight: 700;
+    font-size: 16px;
+    margin-right: 5px;
+}
+.money-box-target__wrapp input:first-child {
+    margin-right: 25px;
+}
+.money-box-target__wrapp input:focus {
+    border-bottom: #FF4A00 solid 3px;
+    outline: none;
+}
+.money-box-target__wrapp input::placeholder {
+    color: #979797;
+    font-size: 16px;
+}
+.money-box-target__wrapp button{
+    width: 48px;
+    height: 29px;
+    background-color: #FF4A00;
+    font-weight: 700;
+    color: #ffffff;
+    border: none;
+    font-size: 18px;
+    border-radius: 2px;
+    cursor: pointer;
+    outline: none;
+}
+.money-box-target__period {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+.money-box-target__wrapp button:hover {
+    box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.25);
+}
+.money-box-target__subtitle {
+    font-weight: 700;
+    font-size: 20px;
+    margin-right: 12px;
+}
+.money-box-target__period label {
+    padding: 0 5px;
+}
+.checkbox-radio-input {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+}
+.checkbox-radio-label {
+    display: inline-flex;
+    align-items: center;
+    user-select: none;
+    cursor: pointer;
+}
+.checkbox-radio-input + label::before {
+    content: '';
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    border: #FF4A00 3px solid;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+.checkbox-radio-input:checked + label::before {
+    background-image: url('../../icons/radio.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 75%;
+}
+.checkbox-radio-input:focus + label::before {
+    box-shadow: 0 0 0 5px rgba(255, 165, 128, 0.5);
+}
+.money-box-target__amount {
+    margin-bottom: 15px;
+}
+.money-box-target__month-amount {
+    margin-bottom: 15px;
+}
+.money-box-target__target {
+    margin-bottom: 15px;
+    font-size: 28px;
+}
+.money-box-target__target span:first-child {
+    font-weight: 700;
+}
+.money-box-target__target span:last-child {
+    font-weight: 700;
+    color: #FF4A00;
+    margin-left: 35px;
+}
+.money-box-target__count {
+    font-weight: 700;
+    color: #FF4A00;
+}

@@ -25,3 +25,9 @@
     width: 55px;
     padding: 15px 5px;
 }
+@media (max-width: 580px) {
+   .card{
+       margin: 0 auto;
+       margin-top: 5px;
+   }
+}

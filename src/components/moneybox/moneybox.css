@@ -15,3 +15,26 @@
     display: flex;
     justify-content: space-between;
 }
+@media (max-width: 1055px) {
+    .money-box__col {
+        margin: 0 2px;
+    } 
+}
+@media (max-width: 965px) {
+    .money-box__row{
+        flex-direction: column;
+        align-items: center;
+    }
+    .money-box__col {
+        max-width: 600px;
+        margin: 0 10px;
+    }
+    .money-box__cards {
+        justify-content: space-around;
+    }
+}
+@media (max-width: 550px) {
+    .money-box__cards{
+        flex-direction: column;
+    }
+}

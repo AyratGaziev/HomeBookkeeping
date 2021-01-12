@@ -6,7 +6,17 @@ import LineChart from '../line-chart/line-chart';
 import balance from '../../icons/balance.png'
 import monthWallet from '../../icons/monthWallet.png'
 
-const Wallet = ({items, addToItem, InputValueSet, itemInputValue, balanceNow, monthMoney, showDeleteBtn, deleteBtnStatusChange, deleteBtnId, deleteItem}) => {
+const Wallet = ({
+                    items, 
+                    addToItem, 
+                    InputValueSet, 
+                    itemInputValue, 
+                    balanceNow, 
+                    monthMoney, 
+                    showDeleteBtn, 
+                    deleteBtnStatusChange, 
+                    deleteBtnId, 
+                    deleteItem }) => {
     return (
         <div className = 'container'>
             <div className = 'wallet__wrapper' >

@@ -9,28 +9,32 @@ import LineChart from '../line-chart/line-chart'
 
 const Home = ({balanceNow, monthSpendings, monthMoney, wallet, spendings, accumulated}) => {
     return (
-        <div className = 'container'>
-            <div className = 'home__row'>
-                <Card
+        <div className='container'>            
+            <div className='home__row'>
+                <div className='home__cards-col'>
+                    <Card
                         title = 'Баланс'
                         count = {balanceNow}
                         icon = {balance}
                         date = {true} />
-                <Card
+                    <Card
                         title = 'Потрачено в этом месяце'
                         count = {monthSpendings}
                         icon = {monthIcon}
-                        date = {false} />                    
-                <Card
+                        date={false} />
+                </div>
+                <div className='home__cards-col'>
+                    <Card
                         title = 'Пополнения в этом месяце'
                         count = {monthMoney}
                         icon = {monthWallet}
                         date = {false} />
-                <Card
-                        title = 'В копилке'
-                        count = {accumulated}
-                        icon = {pig}
-                        date = {false} />
+                    <Card
+                            title = 'В копилке'
+                            count = {accumulated}
+                            icon = {pig}
+                            date = {false} />                       
+                </div>       
             </div>
             <div className = 'home__row'>
                 <div className = 'home__col'>
@@ -45,7 +49,7 @@ const Home = ({balanceNow, monthSpendings, monthMoney, wallet, spendings, accumu
                                 chartName = 'spendingsChart'
                                 title = 'Затраты' />  
                 </div> 
-            </div>
+            </div>            
         </div>
     );
 }

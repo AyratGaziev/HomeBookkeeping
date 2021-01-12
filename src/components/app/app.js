@@ -13,6 +13,7 @@ class App extends React.Component {
 		super(props);
 		this.state = {
 			accumulatePeriodValue: 6,
+			burgerActive: false,
 			showDeleteBtn: true,
 			deleteBtnId: null,
 			selected: null,
@@ -38,13 +39,13 @@ class App extends React.Component {
 				date: ''
 			},
 			wallet: [
-				{sum: 24000, category: 'Зарплата', date: '2020-04-14', id: 1},
-				{sum: 16000, category: 'Аванс', date: '2020-04-18', id: 2},
+				{sum: 22000, category: 'Зарплата', date: '2020-04-14', id: 1},
+				{sum: 11000, category: 'Аванс', date: '2020-04-18', id: 2},
 				{sum: 4500, category: 'Продажа Авито', date: '2020-04-25', id: 3},
-				{sum: 17500, category: 'Аванс', date: '2020-03-14', id: 5},
-				{sum: 26500, category: 'Зарплата', date: '2020-03-12', id: 6},
+				{sum: 14500, category: 'Аванс', date: '2020-03-14', id: 5},
+				{sum: 23500, category: 'Зарплата', date: '2020-03-12', id: 6},
 				{sum: 5800, category: 'Продажа Авито', date: '2020-03-25', id: 9},
-				{sum: 24500, category: 'Зарплата', date: '2020-02-28', id: 10},
+				{sum: 21500, category: 'Зарплата', date: '2020-02-28', id: 10},
 				{sum: 17850, category: 'Аванс', date: '2020-02-14', id: 11}
 			],
 			spendingsInputValue: {
@@ -58,7 +59,6 @@ class App extends React.Component {
 				{sum: 3505, category: 'Квартплата', date: '2020-04-25', id: 15},
 				{sum: 2500, category: 'Бензин', date: '2020-04-28', id: 16},
 				{sum: 1850, category: 'Запчасти', date: '2020-03-14', id: 17},
-				{sum: 15000, category: 'Стройматериалы', date: '2020-03-12', id: 18},
 				{sum: 2300, category: 'Бензин', date: '2020-02-26', id: 19},
 				{sum: 1550, category: 'Продукты', date: '2020-01-18', id: 20},
 				{sum: 2850, category: 'Квартплата', date: '2020-03-25', id: 21},
@@ -70,13 +70,14 @@ class App extends React.Component {
 				{sum: 3505, category: 'Квартплата', date: '2020-03-23', id: 27},
 				{sum: 2500, category: 'Бензин', date: '2020-03-19', id: 28},
 				{sum: 1850, category: 'Запчасти', date: '2020-02-10', id: 29},
-				{sum: 15000, category: 'Стройматериалы', date: '2020-03-09', id: 30},
 				{sum: 2300, category: 'Бензин', date: '2020-02-18', id: 31},
 				{sum: 1550, category: 'Продукты', date: '2020-01-08', id: 32},
 				{sum: 2850, category: 'Квартплата', date: '2020-03-05', id: 33},
 				{sum: 8500, category: 'Продукты', date: '2020-02-08', id: 34},
 				{sum: 1650, category: 'Хозтовары', date: '2020-04-07', id: 35},
-				{sum: 3550, category: 'Продукты', date: '2020-02-17', id: 36}
+				{sum: 3550, category: 'Продукты', date: '2020-02-17', id: 36},
+				{sum: 1550, category: 'Продукты', date: '2020-05-18', id: 37}
+				
 			]			
 		};
 	}
@@ -128,6 +129,14 @@ class App extends React.Component {
 				}
 			})
 		)
+	}
+
+	burgerSelect = () => {
+		return this.setState((state) => {
+			return {
+				burgerActive: !state.burgerActive
+			}
+		})
 	}
 
 	balanceNow = () => {
@@ -254,7 +263,8 @@ class App extends React.Component {
 			moneyBoxTargetShow,
 			moneyBox,
 			moneyBoxInputValue,
-			accumulatePeriodValue
+			accumulatePeriodValue,
+			burgerActive
 		} = this.state
 
 		const balanceNow = this.balanceNow()
@@ -271,9 +281,12 @@ class App extends React.Component {
 			<div className="app">
 				<BrowserRouter>
 					<Header 
-							onSelect = {this.onSelect}
-							selected = {selected} />
-					<Route 
+						onSelect={this.onSelect}
+						burgerActive={burgerActive}
+						burgerSelect = {this.burgerSelect}
+						selected={selected} />
+					<div className='content'>
+						<Route 
 							exact 
 							path ='/' 
 							render = {() => <Home
@@ -283,57 +296,58 @@ class App extends React.Component {
 													wallet = {wallet}
 													spendings = {spendings}
 													accumulated = {accumulated} />} />
-					<Route 
-							path = '/wallet' 
-							render = {() => <Wallet 
-													items = {wallet}
-													deleteBtnStatusChange = {this.deleteBtnStatusChange}
-													showDeleteBtn = {showDeleteBtn}
-													balanceNow = {balanceNow}
-													monthMoney = {monthMoney}
-													spendings = {spendings}
-													addToItem = {this.addToItem}
-													InputValueSet = {this.InputValueSet}
-													itemInputValue = {walletInputValue}
-													deleteBtnId = {deleteBtnId}
-													deleteItem = {this.deleteItem} />} />
-					<Route 
-							path = '/spendings' 
-							render = {() => <Spendings
-													items = {spendings}
-													showDeleteBtn = {showDeleteBtn}
-													deleteBtnStatusChange = {this.deleteBtnStatusChange}
-													allSpendings = {allSpendings}
-													monthSpendings = {monthSpendings}
-													addToItem = {this.addToItem}
-													InputValueSet = {this.InputValueSet}
-													itemInputValue = {spendingsInputValue}
-													deleteBtnId = {deleteBtnId}
-													deleteItem = {this.deleteItem} />} />
-					<Route 
-							path = '/moneybox' 
-							render = {() => <Moneybox
-													moneyBoxTargetSet = {this.moneyBoxTargetSet}
-													moneyBoxTargetValue = {moneyBoxTargetValue}
-													moneyBoxTargetShow = {moneyBoxTargetShow}
-													moneyBoxTargetShowSet = {this.moneyBoxTargetShowSet}
-													items = {moneyBox}
-													showDeleteBtn = {showDeleteBtn}
-													deleteBtnStatusChange = {this.deleteBtnStatusChange}
-													addToItem = {this.addToItem}
-													InputValueSet = {this.InputValueSet}
-													itemInputValue = {moneyBoxInputValue}
-													deleteBtnId = {deleteBtnId}
-													deleteItem = {this.deleteItem}
-													setAccumulatePeriod = {this.setAccumulatePeriod}
-													accumulatePeriodValue = {accumulatePeriodValue}
-													accumulated = {accumulated}
-													leftToSave = {leftToSave} />} />
-					<Route 
-							path = '/analysis' 
-							render = {() => <Analysis
-													wallet = {wallet}
-													spendings = {spendings} />} />
+						<Route 
+								path = '/wallet' 
+								render = {() => <Wallet 
+														items = {wallet}
+														deleteBtnStatusChange = {this.deleteBtnStatusChange}
+														showDeleteBtn = {showDeleteBtn}
+														balanceNow = {balanceNow}
+														monthMoney = {monthMoney}
+														spendings = {spendings}
+														addToItem = {this.addToItem}
+														InputValueSet = {this.InputValueSet}
+														itemInputValue = {walletInputValue}
+														deleteBtnId = {deleteBtnId}
+														deleteItem = {this.deleteItem} />} />
+						<Route 
+								path = '/spendings' 
+								render = {() => <Spendings
+														items = {spendings}
+														showDeleteBtn = {showDeleteBtn}
+														deleteBtnStatusChange = {this.deleteBtnStatusChange}
+														allSpendings = {allSpendings}
+														monthSpendings = {monthSpendings}
+														addToItem = {this.addToItem}
+														InputValueSet = {this.InputValueSet}
+														itemInputValue = {spendingsInputValue}
+														deleteBtnId = {deleteBtnId}
+														deleteItem = {this.deleteItem} />} />
+						<Route 
+								path = '/moneybox' 
+								render = {() => <Moneybox
+														moneyBoxTargetSet = {this.moneyBoxTargetSet}
+														moneyBoxTargetValue = {moneyBoxTargetValue}
+														moneyBoxTargetShow = {moneyBoxTargetShow}
+														moneyBoxTargetShowSet = {this.moneyBoxTargetShowSet}
+														items = {moneyBox}
+														showDeleteBtn = {showDeleteBtn}
+														deleteBtnStatusChange = {this.deleteBtnStatusChange}
+														addToItem = {this.addToItem}
+														InputValueSet = {this.InputValueSet}
+														itemInputValue = {moneyBoxInputValue}
+														deleteBtnId = {deleteBtnId}
+														deleteItem = {this.deleteItem}
+														setAccumulatePeriod = {this.setAccumulatePeriod}
+														accumulatePeriodValue = {accumulatePeriodValue}
+														accumulated = {accumulated}
+														leftToSave = {leftToSave} />} />
+						<Route 
+								path = '/analysis' 
+								render = {() => <Analysis
+														wallet = {wallet}
+														spendings = {spendings} />} />
+					</div>					
 				</BrowserRouter>
 			</div>
 		);

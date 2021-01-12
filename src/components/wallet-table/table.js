@@ -1,7 +1,19 @@
 import React from 'react';
 import './table.css'
 
-const Table = ({type, title, typeValue, items, addToItem, itemInputValue, InputValueSet, deleteBtnStatusChange, showDeleteBtn, deleteBtnId, deleteItem, twoColumns = false}) => {
+const Table = ({
+                    type, 
+                    title, 
+                    typeValue, 
+                    items, 
+                    addToItem, 
+                    itemInputValue, 
+                    InputValueSet, 
+                    deleteBtnStatusChange, 
+                    showDeleteBtn, 
+                    deleteBtnId, 
+                    deleteItem, 
+                    twoColumns = false}) => {
         
     const walletInput = (e) => {        
         InputValueSet(typeValue, e.target.name, e.target.value)

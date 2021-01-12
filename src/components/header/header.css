@@ -4,6 +4,11 @@
     display: flex;
     align-items: center;
     border-bottom: 2px solid #1d303c;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
 }
 .header__nav {
     width: 1200px;
@@ -12,12 +17,97 @@
     justify-content: space-between;
     align-items: center;
 } 
+.header__nav-burger {
+    display: none;
+    
+}
+.header__nav-burger-menu {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    background-color: #fff;
+    padding: 90px 0px 25px 0px;
+    border: 1px solid #dee3e4;
+    z-index: 1;
+    opacity: 0;
+}
+ .header__nav-burger-menu.show {
+    display: flex;
+    animation: animate-menu 1s forwards;
+}
+@keyframes animate-menu {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1
+    }
+}
+.header__nav-burger-menu> a {
+    color: #15222b;
+    margin-bottom: 40px;    
+    padding: 0 80px;
+}
+
+.burger-wrapper, .burger-wrapper-active {
+    z-index: 100;
+    position: relative;
+    margin-left: 15px;    
+    width: 40px;
+    height: 40px;
+}
+.burger{
+    position: absolute;
+    width: 40px;
+    top: 20px;
+    height: 2px;
+    background-color: #fff;
+
+}
+.burger::before{
+    content: '';
+    position: absolute;
+    top: 10px;
+    width: 40px;
+    height: 2px;
+    background-color: #fff;
+}
+.burger::after{
+    content: '';
+    position: absolute;
+    top: -10px;
+    width: 40px;
+    height: 2px;
+    background-color: #fff;
+}
+
+.burger-wrapper-active > .burger {
+    background-color: transparent;
+}
+
+.burger-wrapper-active > .burger::before {
+    transition: transform 1s;
+    top: 0;
+    background-color: #15222b;
+    transform: rotate(45deg)
+}
+
+.burger-wrapper-active > .burger::after {
+    transition: transform 1s;
+    top: 0;
+    background-color: #15222b;
+    transform: rotate(-45deg)
+}
+
+
 .header__link {
     font-family: 'Roboto', sans-serif;
     font-size: 18px;
     font-weight: 700;
     color: #fff;
     text-decoration: none;
+    padding: 0 10px
 }
 .header__logo {
     font-family: 'Roboto', sans-serif;
@@ -27,6 +117,20 @@
     text-decoration: none;
     display: flex;
     align-items: center;
+}
+.header__logo-mini {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    font-weight: 900;
+    color: #fff;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    
 }
 .header__logo span {
     margin-left: 15px;
@@ -48,4 +152,12 @@
     transform: translate(-50%);
     height: 3px;
     background-color: #FF4A00;
+}
+@media (max-width: 650px) {
+    .header__nav {
+        display: none;
+    }
+    .header__nav-burger {
+        display: block;
+    }
 }

@@ -14,3 +14,20 @@
 .spendings__right {
     width: 600px;
 }
+@media (max-width: 1030px) {
+    .spendings__wrapper {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+@media (max-width: 560px) {
+    .spendings__wrapper {
+        flex-direction: column;
+    }
+    .spendings__right  {
+        width: 100%;
+    }
+     .spendings__cards {
+        flex-direction: column;
+    }
+}

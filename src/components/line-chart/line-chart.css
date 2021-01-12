@@ -1,5 +1,4 @@
 .line-chart{
-    width: auto;
     background-color: #ffffff;
     border-radius: 6px;
     border: 1px solid #DEE3E4;
@@ -17,4 +16,29 @@
     padding: 10px;
     width: 100%;
     height: 350px;
+}
+@media (max-width: 580px) {
+    .line-chart{
+        max-width: 500px;
+        padding-right: 0;
+        margin: 0 auto;
+        margin-top: 5px;
+    }
+    .line-chart__title{
+        font-size: 18px;
+    }
+    .line-chart__chart{
+        padding: 2px;
+    }
+}
+@media (max-width: 460px) {   
+    .line-chart__chart{
+        height: 250px;
+    }
+}
+@media (max-width: 360px) {   
+    .line-chart__chart{
+        height: 240px;
+        font-size: 12px;
+    }
 }

@@ -113,3 +113,52 @@
     font-weight: 700;
     color: #FF4A00;
 }
+@media (max-width: 1100px) {
+    .money-box-target__title {
+        font-size: 20px;
+    }                           
+    .money-box-target__subtitle {
+        font-size: 18px;
+    }
+    .checkbox-radio-label{
+        font-size: 14px;
+    }
+}
+@media (max-width: 1055px) {
+    .money-box-target__subtitle {
+        font-size: 14px;
+        margin-right: 2px;
+    }    
+    .money-box-target__wrapp input {
+        width: 130px;
+    }
+}
+@media (max-width: 965px) {
+    .money-box-target{
+        max-width:650px;
+    }
+}
+@media (max-width: 400px) {
+    .money-box-target__wrapp input {
+        width: 100px;
+    }
+    .checkbox-radio-label{
+        font-size: 12px;
+    }
+    .checkbox-radio-input + label::before {
+        width: 14px;
+        height: 14px;
+        margin-right: 1px;
+    }
+    .checkbox-radio-input:checked + label::before {
+        background-size: 70%;
+    }
+    .money-box-target__period label {
+        padding: 0 2px;
+    }
+}
+@media (max-width: 350px) {
+    .money-box-target{
+        padding: 3px;
+    }
+}

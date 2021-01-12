@@ -12,5 +12,19 @@
     justify-content: space-between;
 }
 .wallet__right {
-    width: 600px;
+    max-width: 600px;
+}
+@media (max-width: 1030px) {
+    .wallet__wrapper {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+@media (max-width: 560px) {
+    .wallet__cards {
+        flex-direction: column;
+    }
+    .wallet__right {
+        width: 100%;
+    }
 }

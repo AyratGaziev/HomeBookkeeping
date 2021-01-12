@@ -7,7 +7,26 @@
     display: flex;
     justify-content: space-around;
 }
+.home__cards-col {
+    display: flex;
+    justify-content: space-around;
+}
 .home__col {
     width: 100%;
     margin: 0 10px;
+}
+@media (max-width: 1100px) {
+    .home__row:first-child{
+        flex-direction: column;
+    } 
+}
+@media (max-width: 1000px) {
+    .home__row:last-child{
+        flex-direction: column;
+    }     
+}
+@media (max-width: 560px) {
+    .home__cards-col{
+        flex-direction: column;
+    }
 }

@@ -56,13 +56,13 @@ class PieChart extends Component {
         
 
         chart.data = data
-        // chart.colors.list = [
-        //     am4core.color("#FF4A00")
-        // ]   
+        
 
         let series = chart.series.push(new am4charts.PieSeries())
         series.dataFields.value = 'value'
         series.dataFields.category = 'category'
+        series.labels.template.text = "{value.percent.formatNumber(' #.0')}%"
+        
 
         chart.padding(30,30,30,30)
         

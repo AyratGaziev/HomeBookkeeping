@@ -52,7 +52,7 @@ const Table = ({
 
     const showSecondColumn = (row) => twoColumns ? null : row
     
-    const placeholder = (<div className ='placeholder'>Введите данные</div>)
+    const placeholder = (<div className='placeholder'>Введите {title.toLowerCase()}</div>)
         
     const tableItems = items.map((item) => {
         const deleteBtn = (delBtnStatus.show || isMobile) ? <span 

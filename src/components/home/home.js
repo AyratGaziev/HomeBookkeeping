@@ -7,7 +7,13 @@ import monthWallet from '../../icons/monthWallet.png'
 import pig from '../../icons/pig.png'
 import LineChart from '../line-chart/line-chart'
 
-const Home = ({balanceNow, monthSpendings, monthMoney, wallet, spendings, accumulated}) => {
+const Home = ({
+                balanceNow,
+                monthSpendings,
+                monthMoney,
+                wallet,
+                spendings,
+                accumulated }) => {
     return (
         <div className='container'>            
             <div className='home__row'>

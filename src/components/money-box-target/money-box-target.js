@@ -1,22 +1,36 @@
 import React from 'react';
 import './money-box-target.css'
 
-const MoneyBoxTarget = (props) => {
-
-    const {
-            moneyBoxTargetSet, 
-            moneyBoxTargetValue, 
-            moneyBoxTargetShow, 
-            moneyBoxTargetShowSet,
-            accumulatePeriodValue,
-            setAccumulatePeriod,
+const MoneyBoxTarget = ({
+            setMoneyBoxTarget, 
+            moneyBoxTarget,
             leftToSave
-        } = props
-    
-    const everyMonth = (leftToSave/accumulatePeriodValue).toFixed(2)
+        }) => {
+            
+    const {target, sum, show, period} = moneyBoxTarget
+                
+    const everyMonth = (leftToSave/period).toFixed(2)
 
     const targetInputSet = (e) => {
-        moneyBoxTargetSet(e.target.name, e.target.value)
+        setMoneyBoxTarget({
+            ...moneyBoxTarget,
+            [e.target.name]: e.target.value
+        })
+    }
+
+    const moneyBoxTargetShowSet = () => {
+        setMoneyBoxTarget(prevMoneyBoxTarget => {
+            return {
+                ...prevMoneyBoxTarget,
+                show: !prevMoneyBoxTarget.show
+            }
+        })
+    }
+
+    const setAccumulatePeriod = (period) => {
+        setMoneyBoxTarget({
+            ...moneyBoxTarget, period
+        })
     }
     
     const targetInput = (
@@ -25,13 +39,13 @@ const MoneyBoxTarget = (props) => {
                     className = 'money-box-target__target'
                     placeholder = 'Цель'
                     name = 'target'
-                    value = {moneyBoxTargetValue.target}
+                    value = {target}
                     onChange = {targetInputSet} />
             <input 
                     className = 'money-box-target__sum'
                     placeholder = 'Сумма'
                     name = 'sum'
-                    value = {moneyBoxTargetValue.sum}
+                    value = {sum}
                     onChange = {targetInputSet} />
             <button 
                     className = 'money-box-target__ok'
@@ -43,12 +57,12 @@ const MoneyBoxTarget = (props) => {
         <div 
             className = 'money-box-target__target'
             onClick = {() => moneyBoxTargetShowSet()} >
-            <span> {moneyBoxTargetValue.target} </span>
-            <span> {moneyBoxTargetValue.sum} &#8381; </span>
+            <span> {target} </span>
+            <span> {sum} &#8381; </span>
         </div>
     )
 
-    const showTarget = moneyBoxTargetShow ? targetInputValue : targetInput
+    const showTarget = show && target !== ''  ? targetInputValue : targetInput
 
     return (
         <div className = 'money-box-target'>
@@ -62,7 +76,7 @@ const MoneyBoxTarget = (props) => {
                         className = 'checkbox-radio-input'
                         value = '6' 
                         type = 'radio'
-                        checked = {accumulatePeriodValue === 6}
+                        checked = {period === 6}
                         id = 'six' />
                 
                 <label 
@@ -74,7 +88,7 @@ const MoneyBoxTarget = (props) => {
                         className = 'checkbox-radio-input'
                         value = '12' 
                         type = 'radio'
-                        checked = {accumulatePeriodValue === 12}
+                        checked = {period === 12}
                         id = 'one-year' />
                 
                 <label 
@@ -86,7 +100,7 @@ const MoneyBoxTarget = (props) => {
                         className = 'checkbox-radio-input'
                         value = '24' 
                         type = 'radio'
-                        checked = {accumulatePeriodValue === 24}
+                        checked = {period === 24}
                         id = 'two-year' />
                         
                 <label 

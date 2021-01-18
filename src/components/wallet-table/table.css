@@ -74,6 +74,13 @@
     color: #ff4a00;
     font-weight: 900;
 }
+.placeholder {
+    text-align: center;
+    font-size: 18px;
+    font-weight: 700;
+    color: #979797;
+    margin-bottom: 10px;
+}
 
 @media (max-width: 1150px) {
     .wallet-table__headers-row th input {
@@ -126,6 +133,9 @@
     }       
 }
 @media (max-width: 400px) {
+    .delete {
+        padding-left: 5px;
+    }
     .wallet-table__headers-row th input[type=date] {
         width: 50px;
     }

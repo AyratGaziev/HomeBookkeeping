@@ -9,28 +9,22 @@ import LineChart from '../line-chart/line-chart';
 const Spendings = ({
                     items, 
                     addToItem, 
-                    InputValueSet, 
-                    itemInputValue, 
                     allSpendings, 
                     monthSpendings, 
-                    showDeleteBtn, 
-                    deleteBtnStatusChange, 
-                    deleteBtnId, 
+                    isMobile,
+                    setFunc,
                     deleteItem}) => {
     return (
         <div className = 'container'>
             <div className = 'spendings__wrapper' >
                 <Table
                         items = {items}
-                        showDeleteBtn = {showDeleteBtn}
-                        deleteBtnStatusChange = {deleteBtnStatusChange}
+                        isMobile = {isMobile}
+                        setFunc={setFunc}
                         title = 'Расходы'
                         type = 'spendings'
                         typeValue = 'spendingsInputValue'
                         addToItem = {addToItem}
-                        itemInputValue = {itemInputValue}
-                        InputValueSet = {InputValueSet}
-                        deleteBtnId = {deleteBtnId}
                         deleteItem = {deleteItem} />
                 <div className = 'spendings__right'>
                     <div className = 'spendings__cards'>

@@ -87,11 +87,15 @@ class PieChart extends Component {
     }
 
     render() {
+        const placeholder = (<div className ='placeholder'>Добавьте затраты/пополнения</div>)
         return (
-            <div className = 'pie-chart'>
-                <div className = 'pie-chart__title'> {this.props.title} </div>
-                <div className = 'pie-chart__chart' id = {this.props.chartName} ></div>
-            </div>
+            <div>
+                <div className = 'pie-chart'>
+                    <div className = 'pie-chart__title'> {this.props.title} </div>
+                    <div className = 'pie-chart__chart' id = {this.props.chartName} ></div>
+                </div>
+                {this.props.items.length === 0 ? placeholder : null}
+            </div>  
         );
     }
 }

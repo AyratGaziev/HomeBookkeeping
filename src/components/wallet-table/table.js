@@ -1,35 +1,35 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './table.css'
 
 const Table = ({
-                    type, 
-                    title, 
-                    typeValue, 
-                    items, 
-                    addToItem, 
-                    itemInputValue, 
-                    InputValueSet, 
-                    deleteBtnStatusChange, 
-                    showDeleteBtn, 
-                    deleteBtnId, 
-                    deleteItem, 
-                    twoColumns = false}) => {
+                type, 
+                title, 
+                items, 
+                addToItem, 
+                deleteItem,
+                isMobile,
+                setFunc,
+                twoColumns = false}) => {
+   
+    const [inputValue, setInputValue] = useState({})
+    
+    const [delBtnStatus, setDelBtnStatus] = useState({ show: false, id: null })    
         
-    const walletInput = (e) => {        
-        InputValueSet(typeValue, e.target.name, e.target.value)
+    const walletInput = (e) => { 
+        setInputValue({
+            ...inputValue,
+            [e.target.name]: e.target.value,
+            id: Date.now()
+        })
     }
 
     const addWalletItem = () => {
-        addToItem(type, itemInputValue, twoColumns)
-        if(!twoColumns) {
-            InputValueSet(typeValue, 'sum', '')
-            InputValueSet(typeValue, 'category', '')
-            InputValueSet(typeValue, 'date', '')
+        addToItem(inputValue, twoColumns, setFunc, items)
+        if (!twoColumns) {
+            setInputValue({...inputValue, sum: '', category: '', date: ''})
         } else if (twoColumns) {
-            InputValueSet(typeValue, 'sum', '')
-            InputValueSet(typeValue, 'date', '')
+            setInputValue({...inputValue, sum: '', date: ''})
         }
-        
     }
 
     const secondTitleRow = (
@@ -45,18 +45,24 @@ const Table = ({
                     placeholder = 'Категория'
                     name = 'category'
                     onChange = {walletInput}
-                    value = {itemInputValue.category}
+                    value = {inputValue.category || ''}
                     required />
         </th>
     ) 
 
-    const showSecondColumn = (row) =>  twoColumns ? null : row
+    const showSecondColumn = (row) => twoColumns ? null : row
+    
+    const placeholder = (<div className ='placeholder'>Введите данные</div>)
         
     const tableItems = items.map((item) => {
-        const deleteBtn = showDeleteBtn ? <span 
+        const deleteBtn = (delBtnStatus.show || isMobile) ? <span 
                                                 onClick = {() => deleteItem(type, item.id)} 
                                                 className = 'delete'>&#10006;</span> : <span></span>
-        const idDeleteBtn = item.id === deleteBtnId ? deleteBtn : null
+                                                
+        const idDeleteBtn = (
+            (item.id === delBtnStatus.id) || isMobile
+        ) ? deleteBtn : null
+
         const secondContentRow = (
             <td className = 'wallet-table__col'> {item.category} </td>
         )
@@ -64,8 +70,16 @@ const Table = ({
             <tr 
                 className = 'wallet-table__row' 
                 key = {item.id}
-                onMouseOver = {() => deleteBtnStatusChange('true', item.id)}
-                onMouseOut = {() => deleteBtnStatusChange('false', item.id)} >
+                onMouseOver={() => setDelBtnStatus({
+                    ...delBtnStatus,
+                    show: true,
+                    id: item.id
+                })}
+                onMouseOut = {() => setDelBtnStatus({
+                    ...delBtnStatus,
+                    show: false,
+                    id: item.id
+                })} >
 
                     <td className = 'wallet-table__col'> {item.sum} </td>
 
@@ -101,7 +115,7 @@ const Table = ({
                                     placeholder = 'Сумма'
                                     name = 'sum'
                                     onChange = {walletInput}
-                                    value = {itemInputValue.sum}
+                                    value = {inputValue.sum || ''}
                                     required />
                         </th>
 
@@ -112,7 +126,7 @@ const Table = ({
                                     type ='date'
                                     name = 'date'
                                     onChange = {walletInput}
-                                    value = {itemInputValue.date}
+                                    value = {inputValue.date || ''}
                                     required />
                             <button
                                     onClick = {addWalletItem} >+</button>
@@ -121,8 +135,9 @@ const Table = ({
                 </thead>
                 <tbody>
                     {tableItems}
-                </tbody>
+                </tbody>                
             </table>
+            {items.length === 0 ? placeholder : null}
         </div>
     );
 }

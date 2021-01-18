@@ -86,12 +86,17 @@ class LineChart extends Component {
     }
 
     render() {
+        
+        const placeholder = (<div className ='placeholder'>Введите данные</div>)
+        const showChart = this.props.items.length === 0 ? placeholder : null
         return (
             <div className="line-chart">
                 <div className="line-chart__title"> {this.props.title} </div>
                 <div
                     className="line-chart__chart"
-                    id={this.props.chartName}></div>
+                    id={this.props.chartName}>
+                </div>
+                {showChart}
             </div>
         );
     }

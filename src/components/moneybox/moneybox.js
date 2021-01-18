@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import MoneyBoxTarget from '../money-box-target/money-box-target';
 import Table from '../wallet-table/table';
 import Card from '../card/card'
@@ -7,50 +7,50 @@ import moneyIcon from '../../icons/money_icon.png'
 import LineChart from '../line-chart/line-chart'
 import './moneybox.css'
 
-const Moneybox = (props) => {
-    const {
-        moneyBoxTargetSet,
-        moneyBoxTargetValue,
-        moneyBoxTargetShow,
-        moneyBoxTargetShowSet,
-        items,
-        showDeleteBtn,
-        deleteBtnStatusChange,
-        addToItem,
-        itemInputValue,
-        InputValueSet,
-        deleteBtnId,
-        deleteItem,
-        setAccumulatePeriod,
-        accumulatePeriodValue,
-        leftToSave,
-        accumulated
-    } = props
+const Moneybox = ({
+                    items,
+                    isMobile,
+                    addToItem,
+                    setFunc,
+                    deleteItem,
+                    accumulated
+                }) => {
 
+    const [moneyBoxTarget, setMoneyBoxTarget] = useState({
+        target: '',
+        sum: '',
+        show: true,
+        period: 6
+    })
+
+    useEffect(() => {
+        if (JSON.parse(localStorage.getItem('moneyBoxTarget')) === null) return
+        setMoneyBoxTarget(JSON.parse(localStorage.getItem('moneyBoxTarget')))
+    }, [])
+
+    useEffect(() => {
+        localStorage.setItem("moneyBoxTarget", JSON.stringify(moneyBoxTarget))        
+    }, [moneyBoxTarget])
+
+    const leftToSave = moneyBoxTarget.sum - accumulated
+    
     return (
         <div className = 'container'>
             <div className = 'money-box__row'>
                 <div className = 'money-box__col'>
                     <MoneyBoxTarget
-                                    moneyBoxTargetSet = {moneyBoxTargetSet}
-                                    moneyBoxTargetValue = {moneyBoxTargetValue}
-                                    moneyBoxTargetShow = {moneyBoxTargetShow}
-                                    moneyBoxTargetShowSet = {moneyBoxTargetShowSet}
-                                    accumulatePeriodValue = {accumulatePeriodValue}
-                                    setAccumulatePeriod = {setAccumulatePeriod}
-                                    leftToSave = {leftToSave} />
+                                    setMoneyBoxTarget ={setMoneyBoxTarget}
+                                    leftToSave = {leftToSave}
+                                    moneyBoxTarget = {moneyBoxTarget} />
                     <Table 
                                     twoColumns = {true}
-                                    items = {items}
-                                    showDeleteBtn = {showDeleteBtn}
-                                    deleteBtnStatusChange = {deleteBtnStatusChange}
+                                    items={items}
+                                    isMobile = {isMobile}
                                     title = 'Копилка'
                                     type = 'moneyBox'
                                     typeValue = 'moneyBoxInputValue'
                                     addToItem = {addToItem}
-                                    itemInputValue = {itemInputValue}
-                                    InputValueSet = {InputValueSet}
-                                    deleteBtnId = {deleteBtnId}
+                                    setFunc = {setFunc}
                                     deleteItem = {deleteItem} />
                 </div>
                 <div className = 'money-box__col'>

@@ -1,7 +1,11 @@
 import React from 'react';
 import './card.css'
 
-const Card = ({count, icon, date, title}) => {
+const Card = ({
+                count,
+                icon,
+                date,
+                title }) => {
     const dateNow = date ? new Date().toLocaleDateString() : null
     
     return (

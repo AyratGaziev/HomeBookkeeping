@@ -1,26 +1,36 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {Link} from 'react-router-dom'
 import './header.css'
 import logo from './header__logo.png'
 
-const Header = ({onSelect, selected, burgerActive, burgerSelect}) => {
+const Header = () => {
+                    
+    const [selected, setSelected] = useState(null)
+    const [burgerActive, setBurgerActive] = useState(false)
+
+    const onBurgerClick = () => {
+        setBurgerActive((prevBurgerActive) => !prevBurgerActive)
+    }
+                    
     const select = (e) => {
-        onSelect(e.target.name)
-        burgerSelect()
+        setSelected(e.target.name)
+        onBurgerClick()
     }
     const homeSelected = () => {
-        onSelect(null)
+        setSelected(null)
     }
-    const onBurgerClick = () => {
-        burgerSelect()
-    }
+
     return (
-        <div className='header'>
-            <nav className='header__nav-burger'>
+        <div
+            className='header'>
+            <nav
+                className='header__nav-burger'>
+                
                 <div className= {burgerActive ? 'burger-wrapper-active'  : 'burger-wrapper'}>
                     <div
-                        className = {burgerActive ? 'burger'  : 'burger'} 
-                        onClick={onBurgerClick} >                   
+                        className={'burger'}                         
+                        onClick={onBurgerClick}
+                         >                   
                     </div>
                 </div>
 

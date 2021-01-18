@@ -9,28 +9,21 @@ import monthWallet from '../../icons/monthWallet.png'
 const Wallet = ({
                     items, 
                     addToItem, 
-                    InputValueSet, 
-                    itemInputValue, 
-                    balanceNow, 
+                    balanceNow,     
+                    isMobile,
                     monthMoney, 
-                    showDeleteBtn, 
-                    deleteBtnStatusChange, 
-                    deleteBtnId, 
+                    setFunc,
                     deleteItem }) => {
     return (
         <div className = 'container'>
             <div className = 'wallet__wrapper' >
                 <Table 
                             items = {items}
-                            deleteBtnStatusChange = {deleteBtnStatusChange}
-                            showDeleteBtn = {showDeleteBtn}
+                            isMobile = {isMobile}
+                            setFunc = {setFunc}
                             title = 'Доходы'
-                            type = 'wallet'
-                            typeValue = 'walletInputValue'
+                            type='wallet'                            
                             addToItem = {addToItem}
-                            itemInputValue = {itemInputValue}
-                            InputValueSet = {InputValueSet}
-                            deleteBtnId = {deleteBtnId}
                             deleteItem = {deleteItem} />
                 <div className = 'wallet__right'>
                     <div className = 'wallet__cards' >
